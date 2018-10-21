@@ -200,6 +200,27 @@ frontendは、`yarn run build`を実行し、index.htmlとdist配下をリリー
 
 backendは、`composer run compile`を念の為に実行して、まるっとPHP対応のWebサーバに置く
 
+## HashモードからHistoryモードへ変更するか？
+
+古いブラウザやHTTPサーバの設定変更無しで対応できるHashモードから、
+
+HTML5のHistoryモードに変更するか？？？
+
+Vue Router HTML5 History モード
+https://router.vuejs.org/ja/guide/essentials/history-mode.html
+
+Can I use history ?
+https://caniuse.com/#search=history
+
+HashモードはこんなURL「`http://localhost:8080/#/A`」
+
+HistoryモードはこんなURL「`http://localhost:8080/A`」（IE11も対応）
+
+上記のURLで、Hashモードは「Root」ページ内の「`#/A`」へ移動となり、ページ全体が更新されない（SPA）
+
+Historyモードは「`/A`」のリンクへ移動となるが、HTML5 History モードでSPAを実現している。
+
+ただし、HistoryモードはHTTPサーバの設定変更が必要（404エラーの場合、`index.html`に移動する）
 
 ## 入力補完の設定（VSCode）
 
@@ -222,6 +243,15 @@ settings.jsonに下記を追記
 `language-server`をインストールする
 
 https://github.com/felixfbecker/php-language-server
+
+composer.jsonに下記を追記
+
+```json
+{
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+}
+```
 
 BEAR.Resourceの`reflection-docblock`で競合が発生するので、Forkして修正
 

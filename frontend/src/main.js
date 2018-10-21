@@ -5,7 +5,7 @@ import { sync } from 'vuex-router-sync';
 // Ajaxmライブラリ
 // import axios from 'axios';
 
-import App from './App.vue'
+import Main from './Main.vue'
 
 // ルート情報ファイルをインポート
 import { routes } from './routes';
@@ -14,8 +14,12 @@ import { routes } from './routes';
 import store from './store/store';
 
 // Bootstrapをインポート
-import "bootstrap-honoka/dist/css/bootstrap.min.css";
+import 'bootstrap-honoka/dist/css/bootstrap.min.css';
 import 'bootstrap';
+
+// Bootstrap-Sidebarをインポート
+import './css/bootstrap-sidebar.css';
+import './js/bootstrap-sidebar.js';
 
 // SCSSをインポート
 import './scss/main.scss';
@@ -38,7 +42,7 @@ new Vue({
 	el: '#app',
 	router, // routerインスタンスを渡す
 	store, // storeインスタンスを渡す
-	render: h => h(App)
+	render: h => h(Main)
 	// data: {
   //   results: []
   // },
@@ -76,3 +80,5 @@ var editor = new Editor({
 	height: '300px',
 	initialValue: '# content to be rendered',
 });
+
+alert("Hello!");

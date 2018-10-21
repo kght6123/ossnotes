@@ -2,10 +2,10 @@ var path = require('path')
 var webpack = require('webpack')
 
 module.exports = {
-  entry: './src/main.js',
+  entry: { main: './src/main.js'},
   output: {
     path: path.resolve(__dirname, './dist'),
-    publicPath: './dist/',
+    publicPath: 'dist',
     filename: 'build.js'
   },
   module: {
@@ -70,10 +70,22 @@ module.exports = {
     ]
   },
   plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    // change DefinePlugin -> EnvironmentPlugin
     new webpack.EnvironmentPlugin({
-      NODE_ENV: process.env.NODE_ENV,
+      NODE_ENV: 'development',
       BACKEND_HOST: 'localhost',
       BACKEND_PORT: '18080'
+    }),
+    // new webpack.DefinePlugin({
+    //   'process.env': {
+    //     'NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+    //   }
+    // }),
+    // use global JQuery
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery'
     }),
   ],
   resolve: {
@@ -83,9 +95,13 @@ module.exports = {
     extensions: ['*', '.js', '.vue', '.json']
   },
   devServer: {
-    historyApiFallback: true,
-    noInfo: true,
-    overlay: true
+    //historyApiFallback: true,
+    //noInfo: true,
+    overlay: true,
+    contentBase: path.resolve(__dirname, '.'),
+    hot: true,
+    //inline: true,
+    open: true
   },
   performance: {
     hints: false
@@ -97,11 +113,6 @@ if (process.env.NODE_ENV === 'production') {
   module.exports.devtool = '#source-map'
   // http://vue-loader.vuejs.org/en/workflow/production.html
   module.exports.plugins = (module.exports.plugins || []).concat([
-    // new webpack.DefinePlugin({
-    //   'process.env': {
-    //     NODE_ENV: '"production"'
-    //   }
-    // }),
     new webpack.optimize.UglifyJsPlugin({
       sourceMap: true,
       compress: {
