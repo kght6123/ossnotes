@@ -137,7 +137,12 @@ yarn add vuex vuex-router-sync
 yarn add axios
 yarn add tui-editor
 
+yarn add jquery popper.js bootstrap
+yarn add bootstrap-honoka
+
 yarn run build
+
+yarn run build && yarn run dev
 ```
 
 `webpack.config.js`のpublicPathは`./dist/`に変更し、

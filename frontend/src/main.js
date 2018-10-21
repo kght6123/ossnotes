@@ -1,4 +1,4 @@
-import Vue from 'vue'
+import Vue from 'vue';
 import VueRouter from 'vue-router';
 import { sync } from 'vuex-router-sync';
 
@@ -12,6 +12,13 @@ import { routes } from './routes';
 
 // ストア情報ファイルをインポート
 import store from './store/store';
+
+// Bootstrapをインポート
+import "bootstrap-honoka/dist/css/bootstrap.min.css";
+import 'bootstrap';
+
+// SCSSをインポート
+import './scss/main.scss';
 
 // VueにRouterをインストール
 Vue.use(VueRouter);
