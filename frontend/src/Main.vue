@@ -353,16 +353,6 @@
       </div>
       <!-- Page Content  -->
       <main class="sidebar-content">
-        <!-- Topに使うか？
-          <div class="jumbotron-fluid bg-light mt-4">
-            <h1 class="display-4">Title</h1>
-            <p class="lead">simple explanation.</p>
-            <hr class="my-4">
-            <p>detail explanation.</p>
-            <a class="btn btn-primary btn-lg" href="#" role="button">button</a>
-          </div>
-        -->
-        <h1>積層サイドバー</h1>
         <nav aria-label="Breadcrumbs" class="sticky-top" style="min-height: 40px;">
           <ol class="breadcrumb bg-light" style="opacity: 0.85;">
             <li class="breadcrumb-item"><a href="#" class="text-dark">分類１</a></li>
@@ -370,99 +360,7 @@
             <li class="breadcrumb-item active" aria-current="page">ページ１</li>
           </ol>
         </nav>
-        <p>PCとモバイルの両方で、メニューの拡張性、操作性・視認性の良さを重視しており、<br>
-          機能数が多いの業務アプリや、ブログ、Github.ioのマニュアルページなど<br>
-          様々な用途に広く使っていただけると考えて作成しました。</p>
-        <p>今後、自らのブログやマニュアルページに活用予定であり、気づいた点は改良を加えていく予定です。</p>
         <div id="editSection"></div>
-        <h2 id="header1">機能一覧</h2>
-        <p>簡単に主な機能を説明します。<br>
-          少し慣れは必要ですが、モバイルでもPCでも使いやすさを心掛けています。</p>
-        <h5 id="header1-1">積層サイドバー</h5>
-        <p>左側に固定の積層サイドバーを表示し、どのスクロール位置でも多数のメニュー間の移動や操作が直感的に可能です。<br>
-          また、今の位置がページのどの位置なのか分かりやすくしています。</p>
-        <p>現在、2本のサイドバーを同時に表示でき、このページの様に1本目にメインメニュー、2本目にページの目次などの使い方が可能です。</p>
-        <h5 id="header1-2">簡略表示</h5>
-        <p>積層サイドバーは<code>simple</code>クラスを追加すると、アイコンベースの簡略表示になります。（このページの青いサイドバー）</p>
-        <h5 id="header1-3">常に表示</h5>
-        <p>積層サイドバーは<code>always</code>クラスを追加すると、画面サイズに関わらす常に表示になります。（このページの青いサイドバー）<br>
-          alwaysクラスが無い場合、xsサイズ以下の時にサイドバーは非表示になります。</p>
-        <h5 id="header1-4">サブメニュー</h5>
-        <p>下と右側に展開するサブメニューを組み合わせて、最大２層のメニューを作成できます。<br>
-          <code>open</code>クラスを追加すると開いた状態で表示されます。</p>
-        <h5 id="header1-5">表示切り替え</h5>
-        <p>サイドバーの右側にある空白をクリックまたはマウスオーバーする事で、サイドバーの表示が切り替わります。（このページの黒い目次のサイドバー）<br>
-          表示はxs以上と未満で変わります。
-          <ol>
-            <li><h6 id="header1-5-1">xs以上</h6>
-              クリックで、サイドバー全体の表示・非表示を切り替え</li>
-            <li><h6 id="header1-5-2">xs未満</h6>
-              クリックまたはマウスオーバーでサイドバーが半透明で表示<br>
-              （<code>floating-1</code>または<code>floating-2</code>クラスの追加が必要）</li>
-          </ol>
-        </p>
-        <h5 id="header1-6">表示切り替え（xs以下）</h5>
-        <p>スマートフォンなど、画面が小さいxs以下でも画面が見やすいように、<br>
-          右下のマテリアルボタンで、サイドバーの表示・非表示が切り替えられ、<br>
-          メインコンテンツに集中しやすい表示になります。</p>
-        
-        <h5 id="header1-7">パンくずリスト</h5>
-        <p>上部に固定のパンくずリストを表示し、どのスクロール位置でもページの位置の確認や移動ができます。</p>
-          
-        <h2 id="header2">開発方針</h2>
-        <p>レスポンシブレイアウトでPCでもモバイルでもメニューの拡張性と操作性、一覧性を重視しました。<br>
-          JavaScript(JQuery)の利用は最小限になるように考慮しています。</p>
-        
-        <h2 id="header3">ライブラリ</h2>
-        <p>利用しているライブラリです。
-          <ol>
-            <li>「Bootstrap4」<br>
-              基本的なデザインやレイアウトに使っています。<br>
-              積層サイドバーはBootstrap4のナビゲーションバーを拡張したイメージです。</li>
-            <li><a href="http://honokak.osaka/" target="_blank">「honoka」</a><br>
-              日本語を多く使うことを考えているので使っています。<br>
-              無くても大きな問題は無いと思います。</li>
-            <li><a href="https://useiconic.com/open/" target="_blank">「Open Iconic」</a><br>
-              アイコン類を自分で作る時間が無かったので使いました。<br>
-              色々なアイコンがひと通り揃っているので、かなり重宝します。
-            </li>
-          </ol>
-        </p>
-
-        <h2 id="header4">推奨環境</h2>
-        <p>Edge、Safari、Chromeで動きます。<br>
-          IE11は一部の機能が制限されますが動きます。</p>
-        <p>みんなでIEの互換モードを撲滅しましょう、、、障害が多すぎる。</p>
-
-        <h2 id="header5">開発環境</h2>
-        <p>主に「VSCode」と「Brackets」を利用しています。<br>
-          メインのブラウザは「Safari」です。</p>
-        <p>「VSCode」では「Live Serverプラグイン」を利用して、画面表示を確認しています。</p>
-
-        <h2 id="header6">今後の予定</h2>
-        <p>CSS・JSの外部化、「webpack」によるテンプレート化と、<br>
-          レイアウトや機能の追加、微調整などを行なっていく予定です。</p>
-        <p>また、Prettifyを使って、コードを綺麗に表示したいと思ってます。</p>
-        
-        <p>
-          <h3>Prettifyの対応サンプル</h3>
-          <p><code>hl:行番号</code>のクラスを追加すると、その行がハイライトされます。</p>
-          <p>また、コードをクリックすると、クリップボードにコードがコピーされます。</p>
-          <pre class="prettyprint lang-js linenums:4 hl:7 hl:5">// Hellow world!! <span class="nocode">This is not code</span>
-console.log("Hellow world!!");
-console.log("Hellow world!!");
-console.log("Hellow world!!");
-console.log("Hellow world!!");
-console.log("Hellow world!!");</pre>
-          <p>Prettifyはインラインでのコード表記（<code class="prettyprint lang-js">console.log("Hellow world!!");</code>）も対応できます。</p>
-        <!--/p-->
-        <h2 id="header7">連絡先</h2>
-        <p>公開内容などなどについて、お気軽にお声かけください。
-            <ul>
-                <li><a href="https://twitter.com/kght6123" target="_blank">Twitter</a></li>
-                <li><a href="https://kght6123.work/" target="_blank">ブログ</a></li>
-            </ul>
-        </p>
         <div id="sample">
           <img src="./assets/logo.png">
           <h1>{{ msg }}</h1>
