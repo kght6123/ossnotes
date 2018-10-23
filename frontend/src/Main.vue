@@ -353,6 +353,7 @@
       </div>
       <!-- Page Content  -->
       <main class="sidebar-content">
+        <!--
         <nav aria-label="Breadcrumbs" class="sticky-top" style="min-height: 40px;">
           <ol class="breadcrumb bg-light" style="opacity: 0.85;">
             <li class="breadcrumb-item"><a href="#" class="text-dark">分類１</a></li>
@@ -360,7 +361,9 @@
             <li class="breadcrumb-item active" aria-current="page">ページ１</li>
           </ol>
         </nav>
+        -->
         <div id="editSection"></div>
+        <!--
         <div id="sample">
           <img src="./assets/logo.png">
           <h1>{{ msg }}</h1>
@@ -374,6 +377,7 @@
           <p>{{ resultPosts }}</p>
           <router-view></router-view>
         </div>
+        -->
         <!-- Modal Login Floating Form -->
         <form>
           <div tabindex="-1" class="modal fade" id="exampleModalCenter" role="dialog" aria-hidden="true" aria-labelledby="exampleModalCenterTitle" style="display: none;">
@@ -422,6 +426,8 @@
 
 <script>
 import axios from 'axios';
+//import Editor from 'tui-editor';
+import Editor from 'tui-editor/dist/tui-editor-Editor-all.js';
 export default {
   name: 'app',
   data () {
@@ -435,39 +441,71 @@ export default {
   },
   mounted() {
     // ビュー全体がレンダリングされた後にのみ実行されるコード
-    // GET通信
-    const params = { year : '2001', month : '1', day : 3 };
-    const url = "http://"+this.backend+"/weekday";
+    
+    // {// テストコード
+    //   const params = { year : '2001', month : '1', day : 3 };
+    //   const url = "http://"+this.backend+"/weekday";
 
-    axios.get(url, { params }) // postもある
+    //   // GET通信
+    //   axios.get(url, { params }) // postもある
+    //     .then(response => { // thenで成功した場合の処理をかける
+    //       this.results = response.data;
+    //       console.log(response.data);        // レスポンスデータ
+    //       console.log(response.status);      // ステータスコード
+    //       console.log(response.statusText);  // ステータステキスト
+    //       console.log(response.headers);     // レスポンスヘッダ
+    //       console.log(response.config);      // コンフィグ
+    //     })
+    //     .catch(err => { // catchでエラー時の挙動を定義する
+    //       this.results = err;
+    //       console.log('err:', err);
+    //     });
+      
+    //   // POST通信 PHP側が非対応なのでエラーになる
+    //   axios({
+    //       method : 'POST',
+    //       url    : url,
+    //       params : params,
+    //       //responseType : 'arrayBuffer', // バイナリダウンロード
+    //       //timeout : 1000
+    //       //headers : {'X-SPECIAL-TOKEN': 'abcde'},
+    //       //auth    : { username : 'user1', password : 'pass1' }, // Basic認証
+    //     })
+    //     .then(response => { // thenで成功した場合の処理をかける
+    //       this.resultPosts = response.data;
+    //     })
+    //     .catch(err => { // catchでエラー時の挙動を定義する
+    //       this.resultPosts = err;
+    //     });
+    // }
+    
+    var editor = new Editor({
+      el: document.querySelector('#editSection'),
+      //viewer: true,
+      initialEditType: 'markdown',
+      useCommandShortcut: true,
+      previewStyle: 'vertical',
+      height: '100%',
+      initialValue: '',
+      language: 'ja',
+      exts: ['scrollSync', 'colorSyntax', 'uml', 'chart', 'mark', 'table']
+    });
+
+    const params = { path : 'welcome.md' };
+    const url = "http://"+this.backend+"/gdrive";
+
+    axios.get(url, { params })
       .then(response => { // thenで成功した場合の処理をかける
-        this.results = response.data;
         console.log(response.data);        // レスポンスデータ
         console.log(response.status);      // ステータスコード
         console.log(response.statusText);  // ステータステキスト
         console.log(response.headers);     // レスポンスヘッダ
         console.log(response.config);      // コンフィグ
+        editor.setMarkdown(response.data.value, false);
       })
       .catch(err => { // catchでエラー時の挙動を定義する
         this.results = err;
         console.log('err:', err);
-      });
-    
-    // POST通信 PHP側が非対応なのでエラーになる
-    axios({
-        method : 'POST',
-        url    : url,
-        params : params,
-        //responseType : 'arrayBuffer', // バイナリダウンロード
-        //timeout : 1000
-        //headers : {'X-SPECIAL-TOKEN': 'abcde'},
-        //auth    : { username : 'user1', password : 'pass1' }, // Basic認証
-      })
-      .then(response => { // thenで成功した場合の処理をかける
-        this.resultPosts = response.data;
-      })
-      .catch(err => { // catchでエラー時の挙動を定義する
-        this.resultPosts = err;
       });
 	}
 }
@@ -480,5 +518,9 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   margin-top: 60px;
+}
+.sidebar {
+  height: 100vh;
+  overflow: auto;
 }
 </style>
