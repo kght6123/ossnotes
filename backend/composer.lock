@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a063526dc3103615ce82e40b82db9883",
+    "content-hash": "aeeb29e90beb69f0d4480a54509fa752",
     "packages": [
         {
             "name": "aura/cli",
@@ -317,25 +317,53 @@
             "time": "2018-09-11T10:27:28+00:00"
         },
         {
-            "name": "bear/package",
-            "version": "1.8.2",
+            "name": "bear/cs",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/bearsunday/BEAR.Package.git",
-                "reference": "a67b90fd15dd2e68d933f8e2dc10337b3d47b3cb"
+                "url": "https://github.com/bearsunday/cs.git",
+                "reference": "f4543b2816b3cb62db610a473fac26ed5e03b3d4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bearsunday/BEAR.Package/zipball/a67b90fd15dd2e68d933f8e2dc10337b3d47b3cb",
-                "reference": "a67b90fd15dd2e68d933f8e2dc10337b3d47b3cb",
+                "url": "https://api.github.com/repos/bearsunday/cs/zipball/f4543b2816b3cb62db610a473fac26ed5e03b3d4",
+                "reference": "f4543b2816b3cb62db610a473fac26ed5e03b3d4",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Akihito Koriyama",
+                    "email": "akihito.koriyama@gmail.com"
+                }
+            ],
+            "description": "BEAR.Sunday Library Coding Standards",
+            "time": "2018-10-17T04:01:58+00:00"
+        },
+        {
+            "name": "bear/package",
+            "version": "1.9.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bearsunday/BEAR.Package.git",
+                "reference": "ca50121d3dbafaf88f727863bf79e58b10e5f661"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bearsunday/BEAR.Package/zipball/ca50121d3dbafaf88f727863bf79e58b10e5f661",
+                "reference": "ca50121d3dbafaf88f727863bf79e58b10e5f661",
                 "shasum": ""
             },
             "require": {
                 "aura/cli": "^2.2",
                 "bear/app-meta": "^1.4",
-                "bear/query-repository": "^1.5.5",
+                "bear/query-repository": "^1.6",
                 "bear/streamer": "^1.0.1",
-                "bear/sunday": "^1.2.3",
+                "bear/sunday": "^1.3.1",
                 "monolog/monolog": "^1.23",
                 "php": ">=7.0.0"
             },
@@ -374,35 +402,38 @@
                 "framework",
                 "rest"
             ],
-            "time": "2018-09-19T06:44:23+00:00"
+            "time": "2018-10-23T10:21:52+00:00"
         },
         {
             "name": "bear/query-repository",
-            "version": "1.5.6",
+            "version": "1.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bearsunday/BEAR.QueryRepository.git",
-                "reference": "3c8970567b9dcec4b95f9bb347d5ca53c5d5bbee"
+                "reference": "cabfbb04a5f0e3efe6ef0af1c26fbbde83cac483"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bearsunday/BEAR.QueryRepository/zipball/3c8970567b9dcec4b95f9bb347d5ca53c5d5bbee",
-                "reference": "3c8970567b9dcec4b95f9bb347d5ca53c5d5bbee",
+                "url": "https://api.github.com/repos/bearsunday/BEAR.QueryRepository/zipball/cabfbb04a5f0e3efe6ef0af1c26fbbde83cac483",
+                "reference": "cabfbb04a5f0e3efe6ef0af1c26fbbde83cac483",
                 "shasum": ""
             },
             "require": {
-                "bear/resource": "^1.9.5",
-                "doctrine/cache": "^1.6.1",
-                "mobiledetect/mobiledetectlib": "^2.5.0",
+                "bear/sunday": "^1.3",
+                "mobiledetect/mobiledetectlib": "^2.8",
                 "php": ">=7.0.0"
             },
             "require-dev": {
+                "bear/cs": "1.0.0",
                 "phpunit/phpunit": "^6.5"
             },
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "BEAR\\QueryRepository\\": "src/",
+                    "BEAR\\QueryRepository\\": [
+                        "src/",
+                        "src-deprecated/"
+                    ],
                     "BEAR\\RepositoryModule\\Annotation\\": "src-annotation/"
                 }
             },
@@ -417,30 +448,31 @@
                 }
             ],
             "description": "Resource query responsibility segregation",
-            "time": "2018-09-30T17:05:42+00:00"
+            "time": "2018-10-23T10:44:34+00:00"
         },
         {
             "name": "bear/resource",
-            "version": "1.11.3",
+            "version": "1.11.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bearsunday/BEAR.Resource.git",
-                "reference": "0585192e1fff492fb248e79395ae0edf82849402"
+                "reference": "12ef4e71623de4c7734293466ca77fb60b3c6766"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bearsunday/BEAR.Resource/zipball/0585192e1fff492fb248e79395ae0edf82849402",
-                "reference": "0585192e1fff492fb248e79395ae0edf82849402",
+                "url": "https://api.github.com/repos/bearsunday/BEAR.Resource/zipball/12ef4e71623de4c7734293466ca77fb60b3c6766",
+                "reference": "12ef4e71623de4c7734293466ca77fb60b3c6766",
                 "shasum": ""
             },
             "require": {
+                "bear/cs": "^1.0",
                 "doctrine/cache": "^1.6",
                 "ext-json": "*",
                 "justinrainbow/json-schema": "^5.2",
                 "koriym/http-constants": "^1.0",
                 "nocarrier/hal": "^0.9.12",
                 "php": ">=7.0.0",
-                "phpdocumentor/reflection-docblock": "^3.1",
+                "phpdocumentor/reflection-docblock": "^3.1|^4.0",
                 "ray/di": "^2.7.1",
                 "ray/web-param-module": "^2.0",
                 "rize/uri-template": "^0.3"
@@ -481,7 +513,7 @@
                 "protocol",
                 "rest"
             ],
-            "time": "2018-10-15T04:09:14+00:00"
+            "time": "2018-10-23T01:14:48+00:00"
         },
         {
             "name": "bear/streamer",
@@ -527,16 +559,16 @@
         },
         {
             "name": "bear/sunday",
-            "version": "1.3.0",
+            "version": "1.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bearsunday/BEAR.Sunday.git",
-                "reference": "2593ab132736b6762fbd199c347a8ada560d4d57"
+                "reference": "0d08490e9dad740cbdbe7df1debdfc9c6c5ecd98"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bearsunday/BEAR.Sunday/zipball/2593ab132736b6762fbd199c347a8ada560d4d57",
-                "reference": "2593ab132736b6762fbd199c347a8ada560d4d57",
+                "url": "https://api.github.com/repos/bearsunday/BEAR.Sunday/zipball/0d08490e9dad740cbdbe7df1debdfc9c6c5ecd98",
+                "reference": "0d08490e9dad740cbdbe7df1debdfc9c6c5ecd98",
                 "shasum": ""
             },
             "require": {
@@ -545,6 +577,7 @@
                 "psr/log": "^1.0.2"
             },
             "require-dev": {
+                "bear/cs": "1.0.0",
                 "phpunit/phpunit": "^6.5"
             },
             "type": "library",
@@ -576,7 +609,51 @@
                 "hypermedia",
                 "rest"
             ],
-            "time": "2018-10-15T08:11:57+00:00"
+            "time": "2018-10-17T07:53:15+00:00"
+        },
+        {
+            "name": "composer/xdebug-handler",
+            "version": "1.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/composer/xdebug-handler.git",
+                "reference": "b8e9745fb9b06ea6664d8872c4505fb16df4611c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/composer/xdebug-handler/zipball/b8e9745fb9b06ea6664d8872c4505fb16df4611c",
+                "reference": "b8e9745fb9b06ea6664d8872c4505fb16df4611c",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.3.2 || ^7.0",
+                "psr/log": "^1.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8.35 || ^5.7 || ^6.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Composer\\XdebugHandler\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "John Stevenson",
+                    "email": "john-stevenson@blueyonder.co.uk"
+                }
+            ],
+            "description": "Restarts a process without xdebug.",
+            "keywords": [
+                "Xdebug",
+                "performance"
+            ],
+            "time": "2018-08-31T19:07:57+00:00"
         },
         {
             "name": "doctrine/annotations",
@@ -776,6 +853,118 @@
             "time": "2014-09-09T13:34:57+00:00"
         },
         {
+            "name": "felixfbecker/advanced-json-rpc",
+            "version": "v3.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/felixfbecker/php-advanced-json-rpc.git",
+                "reference": "241c470695366e7b83672be04ea0e64d8085a551"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/felixfbecker/php-advanced-json-rpc/zipball/241c470695366e7b83672be04ea0e64d8085a551",
+                "reference": "241c470695366e7b83672be04ea0e64d8085a551",
+                "shasum": ""
+            },
+            "require": {
+                "netresearch/jsonmapper": "^1.0",
+                "php": ">=7.0",
+                "phpdocumentor/reflection-docblock": "^4.0.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^6.0.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "AdvancedJsonRpc\\": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "ISC"
+            ],
+            "authors": [
+                {
+                    "name": "Felix Becker",
+                    "email": "felix.b@outlook.com"
+                }
+            ],
+            "description": "A more advanced JSONRPC implementation",
+            "time": "2018-09-10T08:58:41+00:00"
+        },
+        {
+            "name": "felixfbecker/language-server",
+            "version": "v5.4.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/felixfbecker/php-language-server.git",
+                "reference": "3931c8848ff4b5696501d26cad165520cca813a8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/felixfbecker/php-language-server/zipball/3931c8848ff4b5696501d26cad165520cca813a8",
+                "reference": "3931c8848ff4b5696501d26cad165520cca813a8",
+                "shasum": ""
+            },
+            "require": {
+                "composer/xdebug-handler": "^1.0",
+                "felixfbecker/advanced-json-rpc": "^3.0.0",
+                "jetbrains/phpstorm-stubs": "dev-master",
+                "microsoft/tolerant-php-parser": "0.0.*",
+                "netresearch/jsonmapper": "^1.0",
+                "php": "^7.0",
+                "phpdocumentor/reflection-docblock": "^4.0.0",
+                "psr/log": "^1.0",
+                "sabre/event": "^5.0",
+                "sabre/uri": "^2.0",
+                "webmozart/glob": "^4.1",
+                "webmozart/path-util": "^2.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^6.3",
+                "squizlabs/php_codesniffer": "^3.1"
+            },
+            "bin": [
+                "bin/php-language-server.php"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "LanguageServer\\": "src/"
+                },
+                "files": [
+                    "src/utils.php",
+                    "src/FqnUtilities.php",
+                    "src/ParserHelpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "ISC"
+            ],
+            "authors": [
+                {
+                    "name": "Felix Becker",
+                    "email": "felix.b@outlook.com"
+                }
+            ],
+            "description": "PHP Implementation of the Visual Studio Code Language Server Protocol",
+            "keywords": [
+                "autocompletion",
+                "code",
+                "intellisense",
+                "language",
+                "microsoft",
+                "php",
+                "refactor",
+                "server",
+                "studio",
+                "visual"
+            ],
+            "time": "2018-08-22T18:48:14+00:00"
+        },
+        {
             "name": "firebase/php-jwt",
             "version": "v5.0.0",
             "source": {
@@ -882,16 +1071,16 @@
         },
         {
             "name": "google/apiclient-services",
-            "version": "v0.72",
+            "version": "v0.73",
             "source": {
                 "type": "git",
                 "url": "https://github.com/googleapis/google-api-php-client-services.git",
-                "reference": "e8c6b72963b19e707b8a6c46fe3515207bb03bd2"
+                "reference": "df35c41d842f5167654e8f38343a21bfe277aeda"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/googleapis/google-api-php-client-services/zipball/e8c6b72963b19e707b8a6c46fe3515207bb03bd2",
-                "reference": "e8c6b72963b19e707b8a6c46fe3515207bb03bd2",
+                "url": "https://api.github.com/repos/googleapis/google-api-php-client-services/zipball/df35c41d842f5167654e8f38343a21bfe277aeda",
+                "reference": "df35c41d842f5167654e8f38343a21bfe277aeda",
                 "shasum": ""
             },
             "require": {
@@ -915,7 +1104,7 @@
             "keywords": [
                 "google"
             ],
-            "time": "2018-10-13T00:23:17+00:00"
+            "time": "2018-10-20T00:22:35+00:00"
         },
         {
             "name": "google/auth",
@@ -1144,6 +1333,44 @@
                 "url"
             ],
             "time": "2017-03-20T17:10:46+00:00"
+        },
+        {
+            "name": "jetbrains/phpstorm-stubs",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/JetBrains/phpstorm-stubs.git",
+                "reference": "e7ff3c65baa69ec949eecab49b8569484461bec0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/JetBrains/phpstorm-stubs/zipball/e7ff3c65baa69ec949eecab49b8569484461bec0",
+                "reference": "e7ff3c65baa69ec949eecab49b8569484461bec0",
+                "shasum": ""
+            },
+            "require-dev": {
+                "nikic/php-parser": "v4.0.1",
+                "phpdocumentor/reflection-docblock": "^4.3",
+                "phpunit/phpunit": "7.1.4"
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "description": "PHP runtime & extensions header files for PhpStorm",
+            "homepage": "https://www.jetbrains.com/phpstorm",
+            "keywords": [
+                "autocomplete",
+                "code",
+                "inference",
+                "inspection",
+                "jetbrains",
+                "phpstorm",
+                "stubs",
+                "type"
+            ],
+            "time": "2018-10-16T10:12:15+00:00"
         },
         {
             "name": "josegonzalez/dotenv",
@@ -1493,6 +1720,47 @@
             "time": "2018-06-05T05:51:10+00:00"
         },
         {
+            "name": "microsoft/tolerant-php-parser",
+            "version": "v0.0.15",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Microsoft/tolerant-php-parser.git",
+                "reference": "54a84f1250dcde5641e86b5e966fec5f0e201f71"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Microsoft/tolerant-php-parser/zipball/54a84f1250dcde5641e86b5e966fec5f0e201f71",
+                "reference": "54a84f1250dcde5641e86b5e966fec5f0e201f71",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^6.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Microsoft\\PhpParser\\": [
+                        "src/"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Rob Lourens",
+                    "email": "roblou@microsoft.com"
+                }
+            ],
+            "description": "Tolerant PHP-to-AST parser designed for IDE usage scenarios",
+            "time": "2018-09-26T05:43:26+00:00"
+        },
+        {
             "name": "mobiledetect/mobiledetectlib",
             "version": "2.8.33",
             "source": {
@@ -1621,6 +1889,48 @@
                 "psr-3"
             ],
             "time": "2017-06-19T01:22:40+00:00"
+        },
+        {
+            "name": "netresearch/jsonmapper",
+            "version": "v1.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cweiske/jsonmapper.git",
+                "reference": "3868fe1128ce1169228acdb623359dca74db5ef3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cweiske/jsonmapper/zipball/3868fe1128ce1169228acdb623359dca74db5ef3",
+                "reference": "3868fe1128ce1169228acdb623359dca74db5ef3",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.8.35 || ~5.7 || ~6.4",
+                "squizlabs/php_codesniffer": "~1.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "JsonMapper": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "OSL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Christian Weiske",
+                    "email": "cweiske@cweiske.de",
+                    "homepage": "http://github.com/cweiske/jsonmapper/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Map nested JSON structures onto PHP classes",
+            "time": "2017-11-28T21:30:01+00:00"
         },
         {
             "name": "nikic/php-parser",
@@ -1846,29 +2156,35 @@
         },
         {
             "name": "phpdocumentor/reflection-docblock",
-            "version": "3.3.2",
+            "version": "4.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/ReflectionDocBlock.git",
-                "reference": "bf329f6c1aadea3299f08ee804682b7c45b326a2"
+                "reference": "94fd0001232e47129dd3504189fa1c7225010d08"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/bf329f6c1aadea3299f08ee804682b7c45b326a2",
-                "reference": "bf329f6c1aadea3299f08ee804682b7c45b326a2",
+                "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/94fd0001232e47129dd3504189fa1c7225010d08",
+                "reference": "94fd0001232e47129dd3504189fa1c7225010d08",
                 "shasum": ""
             },
             "require": {
-                "php": "^5.6 || ^7.0",
+                "php": "^7.0",
                 "phpdocumentor/reflection-common": "^1.0.0",
                 "phpdocumentor/type-resolver": "^0.4.0",
                 "webmozart/assert": "^1.0"
             },
             "require-dev": {
-                "mockery/mockery": "^0.9.4",
-                "phpunit/phpunit": "^4.4"
+                "doctrine/instantiator": "~1.0.5",
+                "mockery/mockery": "^1.0",
+                "phpunit/phpunit": "^6.4"
             },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.x-dev"
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "phpDocumentor\\Reflection\\": [
@@ -1887,7 +2203,7 @@
                 }
             ],
             "description": "With this component, a library can provide support for annotations via DocBlocks or otherwise retrieve information that is embedded in a DocBlock.",
-            "time": "2017-11-10T14:09:06+00:00"
+            "time": "2017-11-30T07:14:17+00:00"
         },
         {
             "name": "phpdocumentor/type-resolver",
@@ -2442,6 +2758,117 @@
             "time": "2017-06-14T03:57:53+00:00"
         },
         {
+            "name": "sabre/event",
+            "version": "5.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sabre-io/event.git",
+                "reference": "f5cf802d240df1257866d8813282b98aee3bc548"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sabre-io/event/zipball/f5cf802d240df1257866d8813282b98aee3bc548",
+                "reference": "f5cf802d240df1257866d8813282b98aee3bc548",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": ">=6",
+                "sabre/cs": "~1.0.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Sabre\\Event\\": "lib/"
+                },
+                "files": [
+                    "lib/coroutine.php",
+                    "lib/Loop/functions.php",
+                    "lib/Promise/functions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Evert Pot",
+                    "email": "me@evertpot.com",
+                    "homepage": "http://evertpot.com/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "sabre/event is a library for lightweight event-based programming",
+            "homepage": "http://sabre.io/event/",
+            "keywords": [
+                "EventEmitter",
+                "async",
+                "coroutine",
+                "eventloop",
+                "events",
+                "hooks",
+                "plugin",
+                "promise",
+                "reactor",
+                "signal"
+            ],
+            "time": "2018-03-05T13:55:47+00:00"
+        },
+        {
+            "name": "sabre/uri",
+            "version": "2.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sabre-io/uri.git",
+                "reference": "a42126042c7dcb53e2978dadb6d22574d1359b4c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sabre-io/uri/zipball/a42126042c7dcb53e2978dadb6d22574d1359b4c",
+                "reference": "a42126042c7dcb53e2978dadb6d22574d1359b4c",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^6.0",
+                "sabre/cs": "~1.0.0"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "lib/functions.php"
+                ],
+                "psr-4": {
+                    "Sabre\\Uri\\": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Evert Pot",
+                    "email": "me@evertpot.com",
+                    "homepage": "http://evertpot.com/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Functions for making sense out of URIs.",
+            "homepage": "http://sabre.io/uri/",
+            "keywords": [
+                "rfc3986",
+                "uri",
+                "url"
+            ],
+            "time": "2017-02-20T20:02:35+00:00"
+        },
+        {
             "name": "symfony/polyfill-ctype",
             "version": "v1.9.0",
             "source": {
@@ -2676,6 +3103,99 @@
             "time": "2018-01-29T19:49:41+00:00"
         },
         {
+            "name": "webmozart/glob",
+            "version": "4.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/webmozart/glob.git",
+                "reference": "3cbf63d4973cf9d780b93d2da8eec7e4a9e63bbe"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/webmozart/glob/zipball/3cbf63d4973cf9d780b93d2da8eec7e4a9e63bbe",
+                "reference": "3cbf63d4973cf9d780b93d2da8eec7e4a9e63bbe",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.3.3|^7.0",
+                "webmozart/path-util": "^2.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.6",
+                "sebastian/version": "^1.0.1",
+                "symfony/filesystem": "^2.5"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Webmozart\\Glob\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Bernhard Schussek",
+                    "email": "bschussek@gmail.com"
+                }
+            ],
+            "description": "A PHP implementation of Ant's glob.",
+            "time": "2015-12-29T11:14:33+00:00"
+        },
+        {
+            "name": "webmozart/path-util",
+            "version": "2.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/webmozart/path-util.git",
+                "reference": "d939f7edc24c9a1bb9c0dee5cb05d8e859490725"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/webmozart/path-util/zipball/d939f7edc24c9a1bb9c0dee5cb05d8e859490725",
+                "reference": "d939f7edc24c9a1bb9c0dee5cb05d8e859490725",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "webmozart/assert": "~1.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.6",
+                "sebastian/version": "^1.0.1"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Webmozart\\PathUtil\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Bernhard Schussek",
+                    "email": "bschussek@gmail.com"
+                }
+            ],
+            "description": "A robust cross-platform utility for normalizing, comparing and modifying file paths.",
+            "time": "2015-12-17T08:42:14+00:00"
+        },
+        {
             "name": "zendframework/zend-diactoros",
             "version": "1.8.6",
             "source": {
@@ -2847,50 +3367,6 @@
             "time": "2016-08-30T16:08:34+00:00"
         },
         {
-            "name": "composer/xdebug-handler",
-            "version": "1.3.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/composer/xdebug-handler.git",
-                "reference": "b8e9745fb9b06ea6664d8872c4505fb16df4611c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/composer/xdebug-handler/zipball/b8e9745fb9b06ea6664d8872c4505fb16df4611c",
-                "reference": "b8e9745fb9b06ea6664d8872c4505fb16df4611c",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^5.3.2 || ^7.0",
-                "psr/log": "^1.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^4.8.35 || ^5.7 || ^6.5"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Composer\\XdebugHandler\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "John Stevenson",
-                    "email": "john-stevenson@blueyonder.co.uk"
-                }
-            ],
-            "description": "Restarts a process without xdebug.",
-            "keywords": [
-                "Xdebug",
-                "performance"
-            ],
-            "time": "2018-08-31T19:07:57+00:00"
-        },
-        {
             "name": "doctrine/instantiator",
             "version": "1.1.0",
             "source": {
@@ -2945,17 +3421,64 @@
             "time": "2017-07-22T11:58:36+00:00"
         },
         {
-            "name": "friendsofphp/php-cs-fixer",
-            "version": "v2.13.0",
+            "name": "felixfbecker/language-server-protocol",
+            "version": "v1.2.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/FriendsOfPHP/PHP-CS-Fixer.git",
-                "reference": "7136aa4e0c5f912e8af82383775460d906168a10"
+                "url": "https://github.com/felixfbecker/php-language-server-protocol.git",
+                "reference": "1bdd1bcc95428edf85ec04c7b558d0886c07280f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/7136aa4e0c5f912e8af82383775460d906168a10",
-                "reference": "7136aa4e0c5f912e8af82383775460d906168a10",
+                "url": "https://api.github.com/repos/felixfbecker/php-language-server-protocol/zipball/1bdd1bcc95428edf85ec04c7b558d0886c07280f",
+                "reference": "1bdd1bcc95428edf85ec04c7b558d0886c07280f",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.0"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "*",
+                "phpunit/phpunit": "^6.3",
+                "squizlabs/php_codesniffer": "^3.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "LanguageServerProtocol\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "ISC"
+            ],
+            "authors": [
+                {
+                    "name": "Felix Becker",
+                    "email": "felix.b@outlook.com"
+                }
+            ],
+            "description": "PHP classes for the Language Server Protocol",
+            "keywords": [
+                "language",
+                "microsoft",
+                "php",
+                "server"
+            ],
+            "time": "2018-09-25T11:42:25+00:00"
+        },
+        {
+            "name": "friendsofphp/php-cs-fixer",
+            "version": "v2.13.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/FriendsOfPHP/PHP-CS-Fixer.git",
+                "reference": "54814c62d5beef3ba55297b9b3186ed8b8a1b161"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/54814c62d5beef3ba55297b9b3186ed8b8a1b161",
+                "reference": "54814c62d5beef3ba55297b9b3186ed8b8a1b161",
                 "shasum": ""
             },
             "require": {
@@ -2966,7 +3489,7 @@
                 "ext-tokenizer": "*",
                 "php": "^5.6 || >=7.0 <7.3",
                 "php-cs-fixer/diff": "^1.3",
-                "symfony/console": "^3.2 || ^4.0",
+                "symfony/console": "^3.4.17 || ^4.1.6",
                 "symfony/event-dispatcher": "^3.0 || ^4.0",
                 "symfony/filesystem": "^3.0 || ^4.0",
                 "symfony/finder": "^3.0 || ^4.0",
@@ -3002,11 +3525,6 @@
                 "php-cs-fixer"
             ],
             "type": "application",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.13-dev"
-                }
-            },
             "autoload": {
                 "psr-4": {
                     "PhpCsFixer\\": "src/"
@@ -3038,7 +3556,7 @@
                 }
             ],
             "description": "A tool to automatically fix PHP code style",
-            "time": "2018-08-23T13:15:44+00:00"
+            "time": "2018-10-21T00:32:10+00:00"
         },
         {
             "name": "mayflower/php-codebrowser",
@@ -4226,8 +4744,8 @@
                 "doctrine/mongodb-odm-bundle": ">=2,<3.0.1",
                 "doctrine/orm": ">=2,<2.4.8|>=2.5,<2.5.1",
                 "dompdf/dompdf": ">=0.6,<0.6.2",
-                "drupal/core": ">=7,<7.59|>=8,<8.4.8|>=8.5,<8.5.3",
-                "drupal/drupal": ">=7,<7.59|>=8,<8.4.8|>=8.5,<8.5.3",
+                "drupal/core": ">=7,<7.60|>=8,<8.5.8|>=8.6,<8.6.2",
+                "drupal/drupal": ">=7,<7.60|>=8,<8.5.8|>=8.6,<8.6.2",
                 "erusev/parsedown": "<1.7",
                 "ezsystems/ezpublish-legacy": ">=5.3,<5.3.12.3|>=5.4,<5.4.11.3|>=2017.8,<2017.8.1.1|>=2017.12,<2017.12.2.1",
                 "ezyang/htmlpurifier": "<4.1.1",
@@ -4316,7 +4834,7 @@
                 "symfony/yaml": ">=2,<2.0.22|>=2.1,<2.1.7",
                 "tecnickcom/tcpdf": "<6.2.22",
                 "thelia/backoffice-default-template": ">=2.1,<2.1.2",
-                "thelia/thelia": ">=2.1.0-beta1,<2.1.3|>=2.1,<2.1.2",
+                "thelia/thelia": ">=2.1,<2.1.2|>=2.1.0-beta1,<2.1.3",
                 "theonedemon/phpwhois": "<=4.2.5",
                 "titon/framework": ">=0,<9.9.99",
                 "truckersmp/phpwhois": "<=4.3.1",
@@ -4373,7 +4891,7 @@
                 }
             ],
             "description": "Prevents installation of composer packages with known security vulnerabilities: no API, simply require it",
-            "time": "2018-10-15T15:36:51+00:00"
+            "time": "2018-10-21T18:01:48+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
@@ -5791,25 +6309,32 @@
         },
         {
             "name": "vimeo/psalm",
-            "version": "2.0.14",
+            "version": "2.0.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vimeo/psalm.git",
-                "reference": "792144def40d678b7fa7c8a52da6cdbd34dd415a"
+                "reference": "8b525a066b107b9936f338ec7c2c5618cf9a1764"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vimeo/psalm/zipball/792144def40d678b7fa7c8a52da6cdbd34dd415a",
-                "reference": "792144def40d678b7fa7c8a52da6cdbd34dd415a",
+                "url": "https://api.github.com/repos/vimeo/psalm/zipball/8b525a066b107b9936f338ec7c2c5618cf9a1764",
+                "reference": "8b525a066b107b9936f338ec7c2c5618cf9a1764",
                 "shasum": ""
             },
             "require": {
                 "composer/xdebug-handler": "^1.1",
+                "felixfbecker/advanced-json-rpc": "^3.0.3",
+                "felixfbecker/language-server-protocol": "^1.2",
                 "muglug/package-versions-56": "1.2.4",
-                "nikic/php-parser": "^4.0",
+                "netresearch/jsonmapper": "^1.0",
+                "nikic/php-parser": "^4.0.3 || ^4.1",
                 "openlss/lib-array2xml": "^0.0.10||^0.5.1",
                 "php": "^7.0",
-                "php-cs-fixer/diff": "^1.2"
+                "php-cs-fixer/diff": "^1.2",
+                "sabre/event": "^5.0.1",
+                "sabre/uri": "^2.0",
+                "webmozart/glob": "^4.1",
+                "webmozart/path-util": "^2.3"
             },
             "provide": {
                 "psalm/psalm": "self.version"
@@ -5825,7 +6350,8 @@
             },
             "bin": [
                 "psalm",
-                "psalter"
+                "psalter",
+                "psalm-language-server"
             ],
             "type": "library",
             "extra": {
@@ -5854,7 +6380,7 @@
                 "inspection",
                 "php"
             ],
-            "time": "2018-10-10T18:22:06+00:00"
+            "time": "2018-10-19T18:04:22+00:00"
         }
     ],
     "aliases": [],

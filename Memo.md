@@ -7,6 +7,7 @@ http://bearsunday.github.io/manuals/1.0/ja/tutorial.html
 
 ossnoteの名前の由来はonline simple smart note、open source software note、open simple shared noteなどなどです。
 
+
 ## 必要モジュールのインストールまたはアップグレード
 
 今回、PHPはMacのデフォルトを使用、後はbrewで導入
@@ -240,10 +241,6 @@ settings.jsonに下記を追記
 }
 ```
 
-`language-server`をインストールする
-
-https://github.com/felixfbecker/php-language-server
-
 composer.jsonに下記を追記
 
 ```json
@@ -253,43 +250,26 @@ composer.jsonに下記を追記
 }
 ```
 
-BEAR.Resourceの`reflection-docblock`で競合が発生するので、Forkして修正
+`language-server`をインストールする
 
 ```sh
-git clone https://github.com/kght6123/BEAR.Resource.git
-cd BEAR.Resource
-code .
-composer install
-./vendor/bin/phpunit
-php demo/run.php
-git tag -a 1.11.4 -m 'add version phpdocumentor/reflection-docblock ^4.0'
-git push origin 1.11.4
+composer update # bear/resourceを1.11.4にアップデート
+composer require felixfbecker/language-server
 ```
 
-composer.jsonに下記を追記
+デフォルトで下の方にある出力タブを選択し、右側のセレクトボックスで「PHP Language Server」を選ぶと、PHPファイルのパースとキャッシュの進捗状況が見える。
 
-```json
-"repositories": [{
-	"type": "package",
-	"package": {
-		"name": "kght6123/BEAR.Resource",
-		"version": "1.11.4",
-		"source": {
-			"url": "https://github.com/kght6123/BEAR.Resource",
-			"type": "git",
-			"reference": "1.11.4"
-		}
-	}
-}]
+下記のようなメッセージが出力されれば、完了。
+
+```log
+[Info  - 9:49:35 PM] All 15159 PHP files parsed in 130 seconds. 1032 MiB allocated.
 ```
 
-インストールを実行
+Macの場合はキーバインドを変更する
 
-```sh
-composer require kght6123/BEAR.Resource:1.11.4
-composer require felixfbecker/language-server # エラーだった
-```
+基本設定のキーボードショートカットを開く、editor.action.triggerSuggestとtoggleSuggestionDetails、toggleSuggestionFocusのキーバインドを変更
 
+順に、`Cmd+1`,`Cmd+2`, `Cmd+3`にした。（既存のマッピングは無念にも削除）
 
 ## Bear/Resourceのreflection-docblockのバージョン問題
 
@@ -336,3 +316,42 @@ phpspec/prophecy  1.8.0   requires  phpdocumentor/reflection-docblock (^2.0|^3.0
 ```
 
 `bear/resource`の`reflection-docblock`のバージョンが、4.0以降であれば、解決できそうです。
+
+### Forkして修正してみる
+
+BEAR.Resourceの`reflection-docblock`で競合が発生するので、Forkして修正
+
+```sh
+git clone https://github.com/kght6123/BEAR.Resource.git
+cd BEAR.Resource
+code .
+composer install
+./vendor/bin/phpunit
+php demo/run.php
+git tag -a 1.11.4 -m 'add version phpdocumentor/reflection-docblock ^4.0'
+git push origin 1.11.4
+```
+
+composer.jsonに下記を追記
+
+```json
+"repositories": [{
+	"type": "package",
+	"package": {
+		"name": "kght6123/BEAR.Resource",
+		"version": "1.11.4",
+		"source": {
+			"url": "https://github.com/kght6123/BEAR.Resource",
+			"type": "git",
+			"reference": "1.11.4"
+		}
+	}
+}]
+```
+
+インストールを実行
+
+```sh
+composer require kght6123/BEAR.Resource:1.11.4
+composer require felixfbecker/language-server # エラーだった
+```
