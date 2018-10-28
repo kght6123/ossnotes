@@ -13,7 +13,8 @@
         "madapaja/twig-module": "^2.1",
         "ray/aura-sql-module": "^1.6",
         "google/apiclient": "^2.2",
-        "felixfbecker/language-server": "^5.4"
+        "felixfbecker/language-server": "^5.4",
+        "monolog/monolog": "^1.23"
     },
     "require-dev": {
         "bear/qatools": "^1.5",

@@ -106,10 +106,21 @@ sqlite> .exit
 composer require ray/aura-sql-module
 ```
 
-Google API Clientのインストール、`credentials.json`も置いた
+### Google API Clientのインストール
+
+`credentials.json`も置いた
 
 ```sh
 composer require google/apiclient
+```
+
+### monolog（Logger）のインストール
+
+https://github.com/bearsunday/bearsunday.github.io/wiki/workshop#diでログを提供
+https://tech.quartetcom.co.jp/2018/05/31/monolog/
+
+```sh
+composer require monolog/monolog
 ```
 
 ### backend ディレクトリへ移動
@@ -193,6 +204,7 @@ $ php -dzend_extension=xdebug.so ./vendor/bin/phpunit --coverage-text --coverage
 $ composer cs # コーディング規約チェック
 $ composer cs-fix # コーディング規約チェック＋自動修正
 $ composer tests # コミット前向け phpunit＋phpcs＋phpmd＋phpstan
+$ composer run test # phpunitだけ
 ```
 
 ## インストール
@@ -270,6 +282,41 @@ Macの場合はキーバインドを変更する
 基本設定のキーボードショートカットを開く、editor.action.triggerSuggestとtoggleSuggestionDetails、toggleSuggestionFocusのキーバインドを変更
 
 順に、`Cmd+1`,`Cmd+2`, `Cmd+3`にした。（既存のマッピングは無念にも削除）
+
+## db-app-packageを使う
+
+https://bearsunday.github.io/manuals/1.0/ja/quick-api.html
+https://github.com/koriym/Koriym.DbAppPackage
+
+もうマニュアルからリンクされなくなってるから、Aura Router v3はサポート外？？
+
+ダメ元でリクエストしてみるか？？
+
+```
+$ composer require koriym/db-app-package
+Using version ^1.1 for koriym/db-app-package
+./composer.json has been updated
+Loading composer repositories with package information
+Updating dependencies (including require-dev)
+Your requirements could not be resolved to an installable set of packages.
+
+  Problem 1
+    - koriym/db-app-package 1.1.0 requires bear/aura-router-module ^1.2 -> satisfiable by bear/aura-router-module[1.x-dev].
+    - koriym/db-app-package 1.x-dev requires bear/aura-router-module ^1.2 -> satisfiable by bear/aura-router-module[1.x-dev].
+    - Conclusion: don't install bear/aura-router-module 1.x-dev
+    - Installation request for koriym/db-app-package ^1.1 -> satisfiable by koriym/db-app-package[1.1.0, 1.x-dev].
+
+
+Installation failed, reverting ./composer.json to its original content.
+
+$ composer show -i | grep bear/aura-router-module
+You are using the deprecated option "installed". Only installed packages are shown by default now. The --all option can be used to show all packages.
+bear/aura-router-module               2.0.5              Aura Router v3 module for BEAR.Package
+
+$ composer depends bear/aura-router-module
+kght6123/ossnote  dev-master  requires  bear/aura-router-module (^2.0)
+
+```
 
 ## Bear/Resourceのreflection-docblockのバージョン問題
 

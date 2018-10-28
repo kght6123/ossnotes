@@ -3,8 +3,11 @@
 namespace kght6123\ossnote\Resource\App;
 
 use BEAR\Resource\ResourceObject;
-use kght6123\ossnote\MyLoggerInterface;
 use kght6123\ossnote\Annotation\BenchMark;
+
+// logger
+use Psr\Log\LoggerInterface;
+use Ray\Di\Di\Inject;
 
 /** 
  * Weekdayクラス（検証用）
@@ -24,7 +27,7 @@ class Weekday extends ResourceObject
 	public $headers = ['access-control-allow-origin' => '*']; // これがないとCrossDomainエラー
 	private $logger;// FIXME php7.4 から型指定ができる
 
-	public function __construct(MyLoggerInterface $logger) {
+	public function __construct(LoggerInterface $logger) {
 		$this->logger = $logger;
 	}
 
@@ -36,7 +39,7 @@ class Weekday extends ResourceObject
 		$this->body = [
 			'weekday' => $weekday
 		];
-		$this->logger->log("$year-$month-$day {$weekday}");
+		$this->logger->info("$year-$month-$day {$weekday}");
 		return $this;
 	}
 }
