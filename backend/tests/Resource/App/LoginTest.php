@@ -20,7 +20,7 @@ class LoginTest extends BaseTestCase {
 		$this->assertSame(201, $ro->code);
 		$this->logger->info(sprintf("初期化 %s", var_export($ro->body, true)));
 
-		$ro = $this->resource->post($this->url, ['userid' => $userid, 'password' => $password, 'email' => 'i.feeling.song@gmail.com', 'markdown' => '# AAAA']);
+		$ro = $this->resource->post($this->url, ['userid' => $userid, 'password' => $password, 'email' => 'i.feeling.song@gmail.com', 'markdown' => '# AAAA', 'gtoken' => '']);
 		$this->assertSame(201, $ro->code);
 		$this->logger->info(sprintf("ユーザ登録 %s", var_export($ro->body, true)));
 	}
@@ -45,12 +45,12 @@ class LoginTest extends BaseTestCase {
 		$this->logger->info(sprintf("ユーザ認証 OK %s", var_export($ro->body, true)));
 		$this->assertSame("true", $ro->body['result']);
 
-		$ro = $this->resource->put($this->url, ['userid' => 'kght6123', 'password' => 'aaa', 'newPassword' => 'bbb', 'email' => 'i.feeling.song+note@gmail.com', 'markdown' => '# BBBB']);
+		$ro = $this->resource->put($this->url, ['userid' => 'kght6123', 'password' => 'aaa', 'newPassword' => 'bbb', 'email' => 'i.feeling.song+note@gmail.com', 'markdown' => '# BBBB', 'gtoken' => '']);
 		$this->assertSame(204, $ro->code);
 		$this->logger->info(sprintf("ユーザ更新 NG %s", var_export($ro->body, true)));
 		$this->assertSame("false", $ro->body['result']);
 
-		$ro = $this->resource->put($this->url, ['userid' => 'kght6123', 'password' => 'kght6123', 'newPassword' => 'kght6123a', 'email' => 'i.feeling.song+note@gmail.com', 'markdown' => '# BBBB']);
+		$ro = $this->resource->put($this->url, ['userid' => 'kght6123', 'password' => 'kght6123', 'newPassword' => 'kght6123a', 'email' => 'i.feeling.song+note@gmail.com', 'markdown' => '# BBBB', 'gtoken' => '']);
 		$this->assertSame(204, $ro->code);
 		$this->logger->info(sprintf("ユーザ更新 OK %s", var_export($ro->body, true)));
 		$this->assertSame("true", $ro->body['result']);

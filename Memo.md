@@ -192,6 +192,12 @@ $ composer serve # JSONサービス bin/app.php
 $ composer webserve # Webサービス public/index.php
 ```
 
+`bin/app.php`に、`*.php`ファイルの時に、Bear.Sundayを使わない様に追記
+
+http://php.net/manual/ja/features.commandline.webserver.php
+
+https://accounts.google.com/o/oauth2/auth?response_type=code&access_type=offline&client_id=762229899901-sl2amoosu9fnjtmphcqr97sugl8lu6iq.apps.googleusercontent.com&redirect_uri=localhost%3A18080%3A18080%2Fapi%2Fgoogle%2Flogin.php%3Fuserid%3Dkoga%26password%3Dkoga&state&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdrive%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Ftasks&prompt=select_account%20consent
+
 ## テストロジック実行
 
 composer.jsonのcoverageのphpunitのパスを`./vendor/bin/phpunit`に修正して

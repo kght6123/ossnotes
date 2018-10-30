@@ -75,15 +75,16 @@ class Login extends BaseResourceObject
 		$this->code = 200;
 		return $this;
 	}
-	public function onPost(string $userid, string $password, string $email, string $markdown): ResourceObject {
+	public function onPost(string $userid, string $password, string $email, string $markdown, string $gtoken): ResourceObject {
 		$this->init();
 
-		$sql = 'insert into user (userid, password, email, markdown, create_dt, update_dt) values (:user, :pass, :email, :markdown, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)';
+		$sql = 'insert into user (userid, password, email, markdown, gtoken, create_dt, update_dt) values (:user, :pass, :email, :markdown, :gtoken, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)';
 		$bind = [
 			'user'     => $userid,
 			'pass'     => password_hash($password, PASSWORD_DEFAULT),
 			'email'    => $email,
-			'markdown' => $markdown
+			'markdown' => $markdown,
+			'gtoken'   => $gtoken,
 		];
 		$statement = $this->pdo->prepare($sql);
 		$statement->execute($bind);
@@ -91,7 +92,7 @@ class Login extends BaseResourceObject
 		$this->code = 201;
 		return $this;
 	}
-	public function onPut(string $userid, string $password, string $newPassword, string $email, string $markdown): ResourceObject {
+	public function onPut(string $userid, string $password, string $newPassword, string $email, string $markdown, string $gtoken): ResourceObject {
 		$this->init();
 		$user = $this->auth($userid, $password);
 
@@ -100,12 +101,13 @@ class Login extends BaseResourceObject
 			$this->ng();
 		} else {
 			// 認証OK
-			$sql = 'update user set userid = :user, password = :pass, email = :email, markdown = :markdown, update_dt = CURRENT_TIMESTAMP where userid = :user';
+			$sql = 'update user set password = :pass, email = :email, markdown = :markdown, gtoken = :gtoken, update_dt = CURRENT_TIMESTAMP where userid = :user';
 			$bind = [
 				'user'     => $userid,
 				'pass'     => password_hash($newPassword, PASSWORD_DEFAULT),
 				'email'    => $email,
-				'markdown' => $markdown
+				'markdown' => $markdown,
+				'gtoken'   => $gtoken,
 			];
 			$statement = $this->pdo->prepare($sql);
 			$statement->execute($bind);

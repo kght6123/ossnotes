@@ -27,23 +27,30 @@ use kght6123\ossnote\Resource\BaseResourceObject;
 
 //require_once (dirname(__FILE__) . '/../../../autoload.php');
 //require __DIR__ . '/../../../autoload.php';
-//require __DIR__ . '/../../../vendor/autoload.php';
+require __DIR__ . '/../../../vendor/autoload.php';
 //require __DIR__ . '/../../../vendor/google/apiclient/src/Google/autoload.php';
 
+//require_once '/../../../lib/google-api-php-client-2.2.2/vendor/autoload.php';
+//require_once '/../../../lib/google-api-php-client-2.2.2/src/Google/Client.php';
 //composer dumpautoload
 //composer dumpautoload -o
+
+// composer.json -- add --> "google\\apiclient\\": "lib/google-api-php-client-2.2.2/src/"
+
+//use google\apiclient\Google_Client;
+
+use Google_Client;
 
 /**
  * Gloginクラス
  * 
  * Googleにログインするクラス
  * 
- *  $ php bin/app.php post '/glogin?path=welcome.md' # 取得
+ *  $ php bin/app.php post '/glogin?path=welcome.md&userid=kght6123&password=kght6123' # 取得
  */
 class Glogin extends BaseResourceObject
 {
 	use ResourceInject;
-	//use Google_Client;
 	
 	private $credentialsFilePath;
 	//private $autoloadFilePath;
@@ -73,7 +80,6 @@ class Glogin extends BaseResourceObject
 				//$this->logger->info("create client. $this->autoloadFilePath");
 
 				//include_once $this->autoloadFilePath;
-
 				$client = new Google_Client();
 				$client->setApplicationName('kght6123/ossnote');
 				$client->addScope(Google_Service_Drive::DRIVE);
