@@ -26,7 +26,11 @@ class Common {
 		return $parameter;
 	}
 	function getParamString(string $key): string {
-		return $this->getFilterString($this->getRequestParameter()[$key]);
+		$param = $this->getRequestParameter();
+		if(array_key_exists($key, $param))
+			return $this->getFilterString($param[$key]);
+		else
+			return '';
 	}
 	function getFilterString(?string $value): string {
 		return /*htmlspecialchars(*/(string)filter_var($value ?? '')/*, ENT_QUOTES, 'UTF-8')*/;

@@ -14,6 +14,9 @@ use Monolog\Logger;
 require_once __DIR__ . '/Auth.php';
 use kght6123\ossnote\api\google\Auth;
 
+require_once __DIR__ . '/../../Common.php';
+use kght6123\ossnote\Common;
+
 /**
  * Loginクラス
  *   GoogleにOAuth認証するクラス
@@ -25,8 +28,10 @@ use kght6123\ossnote\api\google\Auth;
  */
 session_start();
 
-$code = (string)filter_input(INPUT_GET, 'code');
-$error = (string)filter_input(INPUT_GET, 'error');
+$common = new Common();
+
+$code = $common->getParamString('code');
+$error = $common->getParamString('error');
 $login = new Auth();
 
 if(empty($code) == false) {
@@ -45,8 +50,8 @@ if(empty($code) == false) {
 		'password' => $_SESSION['password']];
 
 } else {
-	$userid = (string)filter_input(INPUT_GET, 'userid');
-	$password = (string)filter_input(INPUT_GET, 'password');
+	$userid = $common->getParamString('userid');
+	$password = $common->getParamString('password');
 	// $login = (new \BEAR\Package\Bootstrap)
 	// 			->getApp('kght6123\ossnote', PHP_SAPI === 'cli' ? 'cli-hal-api-app' : 'hal-api-app', __DIR__ . HOME)
 	// 			->resource->post->uri('app://self/login')(['userid' => $userid, 'password' => $password, 'email' => 'a@a.com', 'markdown' => '# AAA' ])
