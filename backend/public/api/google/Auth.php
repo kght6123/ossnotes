@@ -18,12 +18,6 @@ use Monolog\Logger;
 /**
  * Authクラス
  *   GoogleにOAuth認証するクラス
- * 
- * http://localhost:18080/api/google/login.php?userid=koga&password=koga
- * 
- * curl -i "http://localhost:18080/api/google/login.php?userid=kght6123&password=kght6123"
- * curl -i "http://localhost:18080/api/google/login.php" -X POST -d "todo=think"
- * 
  */
 class Auth {
 	private $logger;

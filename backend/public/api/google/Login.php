@@ -14,6 +14,15 @@ use Monolog\Logger;
 require_once __DIR__ . '/Auth.php';
 use kght6123\ossnote\api\google\Auth;
 
+/**
+ * Loginクラス
+ *   GoogleにOAuth認証するクラス
+ * 
+ * http://localhost:18080/api/google/Login.php?userid=koga&password=koga
+ * 
+ * curl -i "http://localhost:18080/api/google/login.php?userid=kght6123&password=kght6123"
+ * curl -i "http://localhost:18080/api/google/login.php" -X POST -d "todo=think"
+ */
 session_start();
 
 $code = (string)filter_input(INPUT_GET, 'code');

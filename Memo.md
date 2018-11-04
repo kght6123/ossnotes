@@ -408,3 +408,83 @@ composer.jsonに下記を追記
 composer require kght6123/BEAR.Resource:1.11.4
 composer require felixfbecker/language-server # エラーだった
 ```
+
+## Google_Clientの読み込みエラー
+
+Bear.Sunday経由でRay.Aopを利用しておりますが、
+`google\apiclient`と組み合わせて利用した際に下記のエラーが発生します。
+
+```
+1) kght6123\ossnote\Resource\App\GloginTest::testOnGet
+The use statement with non-compound name 'Google_Client' has no effect
+
+/Users/kogahirotaka/develop/bear.sunday/kght6123.ossnotes/backend/var/tmp/app/di/kght6123_ossnote_Resource_App_Glogin_JxlmmSE.php:26
+/Users/kogahirotaka/develop/bear.sunday/kght6123.ossnotes/backend/vendor/ray/aop/src/Compiler.php:119
+/Users/kogahirotaka/develop/bear.sunday/kght6123.ossnotes/backend/vendor/ray/aop/src/Compiler.php:119
+/Users/kogahirotaka/develop/bear.sunday/kght6123.ossnotes/backend/vendor/ray/aop/src/Compiler.php:82
+/Users/kogahirotaka/develop/bear.sunday/kght6123.ossnotes/backend/vendor/ray/di/src/Dependency.php:117
+/Users/kogahirotaka/develop/bear.sunday/kght6123.ossnotes/backend/vendor/ray/compiler/src/OnDemandCompiler.php:61
+/Users/kogahirotaka/develop/bear.sunday/kght6123.ossnotes/backend/vendor/ray/compiler/src/ScriptInjector.php:235
+/Users/kogahirotaka/develop/bear.sunday/kght6123.ossnotes/backend/vendor/ray/compiler/src/ScriptInjector.php:196
+/Users/kogahirotaka/develop/bear.sunday/kght6123.ossnotes/backend/vendor/ray/compiler/src/ScriptInjector.php:138
+/Users/kogahirotaka/develop/bear.sunday/kght6123.ossnotes/backend/vendor/bear/resource/src/AppAdapter.php:56
+/Users/kogahirotaka/develop/bear.sunday/kght6123.ossnotes/backend/vendor/bear/resource/src/Factory.php:46
+/Users/kogahirotaka/develop/bear.sunday/kght6123.ossnotes/backend/vendor/bear/resource/src/Resource.php:95
+/Users/kogahirotaka/develop/bear.sunday/kght6123.ossnotes/backend/tests/Resource/App/GloginTest.php:21
+
+ERRORS!
+Tests: 3, Assertions: 20, Errors: 1.
+Script phpunit handling the test event returned with error code 2
+```
+
+`google\apiclient`は`namespace`が未定義で、`autoload.php`を利用して読み込みますが
+その際に`Google_Client`クラスがエラーで読み込めないと想定しています。
+
+試しに`use Google_Client;`を除去すると、下記のnot foundエラーになります。
+
+```
+1) kght6123\ossnote\Resource\App\GloginTest::testOnGet
+Error: Class 'kght6123\ossnote\Resource\App\Google_Client' not found
+
+/Users/kogahirotaka/develop/bear.sunday/kght6123.ossnotes/backend/src/Resource/App/Glogin.php:83
+/Users/kogahirotaka/develop/bear.sunday/kght6123.ossnotes/backend/var/tmp/app/di/kght6123_ossnote_Resource_App_Glogin_JxlmmSE.php:39
+/Users/kogahirotaka/develop/bear.sunday/kght6123.ossnotes/backend/vendor/ray/aop/src/ReflectiveMethodInvocation.php:110
+/Users/kogahirotaka/develop/bear.sunday/kght6123.ossnotes/backend/src/Interceptor/BenchMarker.php:23
+/Users/kogahirotaka/develop/bear.sunday/kght6123.ossnotes/backend/vendor/ray/aop/src/ReflectiveMethodInvocation.php:114
+/Users/kogahirotaka/develop/bear.sunday/kght6123.ossnotes/backend/var/tmp/app/di/kght6123_ossnote_Resource_App_Glogin_JxlmmSE.php:43
+/Users/kogahirotaka/develop/bear.sunday/kght6123.ossnotes/backend/vendor/bear/resource/src/Invoker.php:41
+/Users/kogahirotaka/develop/bear.sunday/kght6123.ossnotes/backend/vendor/bear/resource/src/AbstractRequest.php:144
+/Users/kogahirotaka/develop/bear.sunday/kght6123.ossnotes/backend/vendor/bear/resource/src/Resource.php:146
+/Users/kogahirotaka/develop/bear.sunday/kght6123.ossnotes/backend/tests/Resource/App/GloginTest.php:24
+
+ERRORS!
+Tests: 3, Assertions: 20, Errors: 1.
+Script phpunit handling the test event returned with error code 2
+```
+
+下記はコードの抜粋です。
+
+```php:Glogin.php
+namespace kght6123\ossnote\Resource\App;
+
+require __DIR__ . '/../../../vendor/autoload.php';
+
+use Google_Client;// has no effect
+
+class Glogin extends BaseResourceObject
+{
+	public function onPost(string $userid, string $password, string $path): ResourceObject {
+    $client = new Google_Client();// not found error.
+  }
+}
+```
+
+フルバージョンのコードは下記で公開しております。
+https://github.com/kght6123/ossnotes/blob/master/backend/src/Resource/App/Glogin.php
+
+情報が少なくて申し訳ございませんが、
+可能であれば修正していただけますでしょうか？
+
+もしくは、Issuesの投稿先が間違っていますでしょうか？
+
+お手数をおかけいたしますが、よろしくお願いいたします。
