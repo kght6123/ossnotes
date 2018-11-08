@@ -1,4 +1,5 @@
 <?php
+// あとで消す。
 // php sample/drive/quickstart.php
 require __DIR__ . '/../../vendor/autoload.php';
 

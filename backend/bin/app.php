@@ -4,4 +4,5 @@ if (php_sapi_name() == 'cli-server' && preg_match('/\.php$/', strtok($_SERVER["R
 	return false;
 }
 require dirname(__DIR__) . '/autoload.php';
+//require dirname(__DIR__) . '/vendor/autoload.php';
 exit((require dirname(__DIR__) . '/bootstrap.php')(PHP_SAPI === 'cli' ? 'cli-hal-api-app' : 'hal-api-app'));

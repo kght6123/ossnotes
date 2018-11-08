@@ -11,7 +11,7 @@ use kght6123\ossnote\Resource\App\LoginTest;
  * GloginTestクラス
  */
 class GloginTest extends LoginTest {
-	/*
+	
 	public function testOnGet(): void {
 		$url = 'app://self/glogin';
 	
@@ -30,5 +30,5 @@ class GloginTest extends LoginTest {
 
 		// ユーザ削除 OK
 		$this->remove('kght6123', 'kght6123', "true");
-	}*/
+	}
 }

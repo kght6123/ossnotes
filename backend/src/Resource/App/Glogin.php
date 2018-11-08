@@ -27,7 +27,7 @@ use kght6123\ossnote\Resource\BaseResourceObject;
 
 //require_once (dirname(__FILE__) . '/../../../autoload.php');
 //require __DIR__ . '/../../../autoload.php';
-require __DIR__ . '/../../../vendor/autoload.php';
+//require __DIR__ . '/../../../vendor/autoload.php';
 //require __DIR__ . '/../../../vendor/google/apiclient/src/Google/autoload.php';
 
 //require_once '/../../../lib/google-api-php-client-2.2.2/vendor/autoload.php';
@@ -40,6 +40,8 @@ require __DIR__ . '/../../../vendor/autoload.php';
 //use google\apiclient\Google_Client;
 
 use Google_Client;
+use Google_Service_Drive;
+use Google_Service_Tasks;
 
 /**
  * Gloginクラス

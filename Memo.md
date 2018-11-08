@@ -488,3 +488,43 @@ https://github.com/kght6123/ossnotes/blob/master/backend/src/Resource/App/Glogin
 もしくは、Issuesの投稿先が間違っていますでしょうか？
 
 お手数をおかけいたしますが、よろしくお願いいたします。
+
+### Pull Request
+
+まず、forkしてcloneして、テスト実行する
+
+```sh
+git clone https://github.com/kght6123/Ray.Aop.git
+cd Ray.Aop
+composer install
+vendor/bin/phpunit
+php demo/run.php
+```
+
+`google\apiclient`をインストールする
+
+```
+composer require google/apiclient
+```
+
+`google\apiclient`の定義を追記
+
+```
+require __DIR__ . '/../../../vendor/autoload.php';
+
+use Google_Client;// has no effect
+
+$client = new Google_Client();// not found error.
+```
+
+再現せず、、、BEAR.Sundayのデモで試してみる
+
+```sh
+git clone https://github.com/kght6123/BEAR.Sunday.git
+cd BEAR.Sunday/demo
+composer install
+./vendor/bin/phpunit
+composer require google/apiclient
+
+composer serve
+```
