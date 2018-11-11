@@ -1,12 +1,10 @@
 
 # プロジェクト作成メモ
 
-下記の公式チュートリアルを参考にプロジェクトを作成
-
-http://bearsunday.github.io/manuals/1.0/ja/tutorial.html
-
-ossnoteの名前の由来はonline simple smart note、open source software note、open simple shared noteなどなどです。
-
+ossnoteの名前の由来は下記などなどです。
+- online simple smart note
+- open source software note
+- open simple shared note
 
 ## 必要モジュールのインストールまたはアップグレード
 
@@ -52,18 +50,82 @@ brew doctor # 警告を修正する
 
 ## プロジェクト作成＆関連モジュールのインストール
 
-### プロジェクト作成
+### プロジェクトを作成
 
-vendor名は個人またはチーム（組織）の名前、githubのアカウント名やチーム名など。
-projectにはアプリケーション名
-
-```sh
-composer create-project bear/skeleton kght6123.online-note # ハイフンはダメ、パッケージ名に使えない
-```
+- [クイックスタート](https://readouble.com/laravel/4.2/ja/quick.html)
+- [Installation](https://laravel.com/docs/master/installation)
+- [Configuration](https://laravel.com/docs/master/configuration)
 
 ```sh
-composer create-project bear/skeleton kght6123.OnlineNote # ハイフンを無くした
+composer global require laravel/installer # $HOME/.composer/vendor/binにインストール、.zshrcでPATHに追加
 ```
+
+プロジェクトを作成する
+
+```sh
+laravel new ossnote
+mv ossnote backend
+cd backend
+```
+
+組み込みサーバを起動する
+
+```sh
+php artisan serve
+php artisan serve --port=8080
+```
+
+### プロジェクトを初期設定
+
+アプリケーションキーをランダムな文字列に設定する
+
+```sh
+php artisan key:generate
+```
+
+### Databaseを作成
+
+DBを作成（テーブル作らないとDBが作られない。）
+
+```sh
+sqlite3 database/main.sqlite3 # DB作成＆接続する
+sqlite> create table dummy(id integer, name text); # Table作成
+sqlite> drop table dummy; # Table削除
+sqlite> .exit
+```
+
+`backend/config/database.php`のデフォルトをSQLiteに修正し、main.sqliteに修正する
+
+`backend/.env`の`DB_CONNECTION`と`DB_DATABASE`を`sqlite`と`main.sqlite3`に修正する（無くても、database.phpのデフォルトが優先）
+
+マイグレーションファイルを作成、マイグレーションを実行
+
+https://readouble.com/laravel/5.5/ja/migrations.html#creating-columns
+
+マイグレーションファイルは既存のを流用した
+
+```sh
+php artisan make:migration create_users_table
+php artisan migrate
+```
+
+モデルを作成する（app/User.phpに作られる）
+
+```sh
+php artisan make:model Models/User
+```
+
+初期データを登録するSeederを作成し、実行する
+
+```sh
+php artisan make:seeder UsersTableSeeder # 作成
+php artisan db:seed --class=UsersTableSeeder # 実行
+sqlite3 database/main.sqlite3
+sqlite> select * from users; # 確認
+1|kght6123|admin@kght6123.work||$2y$10$8/NOrDi2jrnG7pdipw8ssu8aMJqcXskClq5neKEe6ZqkyE6kPU58i||||2018-11-11 08:09:50|2018-11-11 08:09:50
+```
+
+
 
 ### aura routerをインストール
 
@@ -126,6 +188,8 @@ composer require monolog/monolog
 ### backend ディレクトリへ移動
 
 kght6123.ossnote配下のcomposer管理のファイルを全て、kght6123.ossnote/backendへ移動します。
+
+最初からbackendフォルダでプロジェクト作った方がよかったかも。
 
 ### vue.js のプロジェクトを作成
 
@@ -219,7 +283,7 @@ frontendは、`yarn run build`を実行し、index.htmlとdist配下をリリー
 
 backendは、`composer run compile`を念の為に実行して、まるっとPHP対応のWebサーバに置く
 
-## HashモードからHistoryモードへ変更するか？
+## VueをHashモードからHistoryモードへ変更するか？
 
 古いブラウザやHTTPサーバの設定変更無しで対応できるHashモードから、
 
@@ -241,7 +305,7 @@ Historyモードは「`/A`」のリンクへ移動となるが、HTML5 History �
 
 ただし、HistoryモードはHTTPサーバの設定変更が必要（404エラーの場合、`index.html`に移動する）
 
-## 入力補完の設定（VSCode）
+## PHPの入力補完の設定（VSCode）
 
 拡張機能の「PHP IntelliSense」を使う
 
@@ -288,243 +352,3 @@ Macの場合はキーバインドを変更する
 基本設定のキーボードショートカットを開く、editor.action.triggerSuggestとtoggleSuggestionDetails、toggleSuggestionFocusのキーバインドを変更
 
 順に、`Cmd+1`,`Cmd+2`, `Cmd+3`にした。（既存のマッピングは無念にも削除）
-
-## db-app-packageを使う
-
-https://bearsunday.github.io/manuals/1.0/ja/quick-api.html
-https://github.com/koriym/Koriym.DbAppPackage
-
-もうマニュアルからリンクされなくなってるから、Aura Router v3はサポート外？？
-
-ダメ元でリクエストしてみるか？？
-
-```
-$ composer require koriym/db-app-package
-Using version ^1.1 for koriym/db-app-package
-./composer.json has been updated
-Loading composer repositories with package information
-Updating dependencies (including require-dev)
-Your requirements could not be resolved to an installable set of packages.
-
-  Problem 1
-    - koriym/db-app-package 1.1.0 requires bear/aura-router-module ^1.2 -> satisfiable by bear/aura-router-module[1.x-dev].
-    - koriym/db-app-package 1.x-dev requires bear/aura-router-module ^1.2 -> satisfiable by bear/aura-router-module[1.x-dev].
-    - Conclusion: don't install bear/aura-router-module 1.x-dev
-    - Installation request for koriym/db-app-package ^1.1 -> satisfiable by koriym/db-app-package[1.1.0, 1.x-dev].
-
-
-Installation failed, reverting ./composer.json to its original content.
-
-$ composer show -i | grep bear/aura-router-module
-You are using the deprecated option "installed". Only installed packages are shown by default now. The --all option can be used to show all packages.
-bear/aura-router-module               2.0.5              Aura Router v3 module for BEAR.Package
-
-$ composer depends bear/aura-router-module
-kght6123/ossnote  dev-master  requires  bear/aura-router-module (^2.0)
-
-```
-
-## Bear/Resourceのreflection-docblockのバージョン問題
-
-### `felixfbecker/language-server`のインストール時に`reflection-docblock`で競合が発生
-
-```
-$ composer require felixfbecker/language-server
-
-Using version ^5.4 for felixfbecker/language-server
-./composer.json has been updated
-Loading composer repositories with package information
-Updating dependencies (including require-dev)
-Your requirements could not be resolved to an installable set of packages.
-
-  Problem 1
-    - Conclusion: don't install felixfbecker/language-server v5.4.2
-    - Conclusion: don't install felixfbecker/language-server v5.4.1
-    - Conclusion: remove phpdocumentor/reflection-docblock 3.3.2
-    - Installation request for felixfbecker/language-server ^5.4 -> satisfiable by felixfbecker/language-server[v5.4.0, v5.4.1, v5.4.2].
-    - Conclusion: don't install phpdocumentor/reflection-docblock 3.3.2
-    - felixfbecker/language-server v5.4.0 requires phpdocumentor/reflection-docblock ^4.0.0 -> satisfiable by phpdocumentor/reflection-docblock[4.0.0, 4.0.1, 4.1.0, 4.1.1, 4.2.0, 4.3.0].
-    - Can only install one of: phpdocumentor/reflection-docblock[4.0.0, 3.3.2].
-    - Can only install one of: phpdocumentor/reflection-docblock[4.0.1, 3.3.2].
-    - Can only install one of: phpdocumentor/reflection-docblock[4.1.0, 3.3.2].
-    - Can only install one of: phpdocumentor/reflection-docblock[4.1.1, 3.3.2].
-    - Can only install one of: phpdocumentor/reflection-docblock[4.2.0, 3.3.2].
-    - Can only install one of: phpdocumentor/reflection-docblock[4.3.0, 3.3.2].
-    - Installation request for phpdocumentor/reflection-docblock (locked at 3.3.2) -> satisfiable by phpdocumentor/reflection-docblock[3.3.2].
-
-
-Installation failed, reverting ./composer.json to its original content.
-```
-
-### インストールバージョンと依存関係を確認
-
-```sh
-$ composer show -i | grep docblock
-You are using the deprecated option "installed". Only installed packages are shown by default now. The --all option can be used to show all packages.
-phpdocumentor/reflection-docblock  3.3.2      With this component, a library can provide support for annotations via DocBlocks or otherwise retrieve information that is ...
-
-$ composer depends phpdocumentor/reflection-docblock
-bear/resource     1.11.3  requires  phpdocumentor/reflection-docblock (^3.1)
-phpspec/prophecy  1.8.0   requires  phpdocumentor/reflection-docblock (^2.0|^3.0.2|^4.0)
-```
-
-`bear/resource`の`reflection-docblock`のバージョンが、4.0以降であれば、解決できそうです。
-
-### Forkして修正してみる
-
-BEAR.Resourceの`reflection-docblock`で競合が発生するので、Forkして修正
-
-```sh
-git clone https://github.com/kght6123/BEAR.Resource.git
-cd BEAR.Resource
-code .
-composer install
-./vendor/bin/phpunit
-php demo/run.php
-git tag -a 1.11.4 -m 'add version phpdocumentor/reflection-docblock ^4.0'
-git push origin 1.11.4
-```
-
-composer.jsonに下記を追記
-
-```json
-"repositories": [{
-	"type": "package",
-	"package": {
-		"name": "kght6123/BEAR.Resource",
-		"version": "1.11.4",
-		"source": {
-			"url": "https://github.com/kght6123/BEAR.Resource",
-			"type": "git",
-			"reference": "1.11.4"
-		}
-	}
-}]
-```
-
-インストールを実行
-
-```sh
-composer require kght6123/BEAR.Resource:1.11.4
-composer require felixfbecker/language-server # エラーだった
-```
-
-## Google_Clientの読み込みエラー
-
-Bear.Sunday経由でRay.Aopを利用しておりますが、
-`google\apiclient`と組み合わせて利用した際に下記のエラーが発生します。
-
-```
-1) kght6123\ossnote\Resource\App\GloginTest::testOnGet
-The use statement with non-compound name 'Google_Client' has no effect
-
-/Users/kogahirotaka/develop/bear.sunday/kght6123.ossnotes/backend/var/tmp/app/di/kght6123_ossnote_Resource_App_Glogin_JxlmmSE.php:26
-/Users/kogahirotaka/develop/bear.sunday/kght6123.ossnotes/backend/vendor/ray/aop/src/Compiler.php:119
-/Users/kogahirotaka/develop/bear.sunday/kght6123.ossnotes/backend/vendor/ray/aop/src/Compiler.php:119
-/Users/kogahirotaka/develop/bear.sunday/kght6123.ossnotes/backend/vendor/ray/aop/src/Compiler.php:82
-/Users/kogahirotaka/develop/bear.sunday/kght6123.ossnotes/backend/vendor/ray/di/src/Dependency.php:117
-/Users/kogahirotaka/develop/bear.sunday/kght6123.ossnotes/backend/vendor/ray/compiler/src/OnDemandCompiler.php:61
-/Users/kogahirotaka/develop/bear.sunday/kght6123.ossnotes/backend/vendor/ray/compiler/src/ScriptInjector.php:235
-/Users/kogahirotaka/develop/bear.sunday/kght6123.ossnotes/backend/vendor/ray/compiler/src/ScriptInjector.php:196
-/Users/kogahirotaka/develop/bear.sunday/kght6123.ossnotes/backend/vendor/ray/compiler/src/ScriptInjector.php:138
-/Users/kogahirotaka/develop/bear.sunday/kght6123.ossnotes/backend/vendor/bear/resource/src/AppAdapter.php:56
-/Users/kogahirotaka/develop/bear.sunday/kght6123.ossnotes/backend/vendor/bear/resource/src/Factory.php:46
-/Users/kogahirotaka/develop/bear.sunday/kght6123.ossnotes/backend/vendor/bear/resource/src/Resource.php:95
-/Users/kogahirotaka/develop/bear.sunday/kght6123.ossnotes/backend/tests/Resource/App/GloginTest.php:21
-
-ERRORS!
-Tests: 3, Assertions: 20, Errors: 1.
-Script phpunit handling the test event returned with error code 2
-```
-
-`google\apiclient`は`namespace`が未定義で、`autoload.php`を利用して読み込みますが
-その際に`Google_Client`クラスがエラーで読み込めないと想定しています。
-
-試しに`use Google_Client;`を除去すると、下記のnot foundエラーになります。
-
-```
-1) kght6123\ossnote\Resource\App\GloginTest::testOnGet
-Error: Class 'kght6123\ossnote\Resource\App\Google_Client' not found
-
-/Users/kogahirotaka/develop/bear.sunday/kght6123.ossnotes/backend/src/Resource/App/Glogin.php:83
-/Users/kogahirotaka/develop/bear.sunday/kght6123.ossnotes/backend/var/tmp/app/di/kght6123_ossnote_Resource_App_Glogin_JxlmmSE.php:39
-/Users/kogahirotaka/develop/bear.sunday/kght6123.ossnotes/backend/vendor/ray/aop/src/ReflectiveMethodInvocation.php:110
-/Users/kogahirotaka/develop/bear.sunday/kght6123.ossnotes/backend/src/Interceptor/BenchMarker.php:23
-/Users/kogahirotaka/develop/bear.sunday/kght6123.ossnotes/backend/vendor/ray/aop/src/ReflectiveMethodInvocation.php:114
-/Users/kogahirotaka/develop/bear.sunday/kght6123.ossnotes/backend/var/tmp/app/di/kght6123_ossnote_Resource_App_Glogin_JxlmmSE.php:43
-/Users/kogahirotaka/develop/bear.sunday/kght6123.ossnotes/backend/vendor/bear/resource/src/Invoker.php:41
-/Users/kogahirotaka/develop/bear.sunday/kght6123.ossnotes/backend/vendor/bear/resource/src/AbstractRequest.php:144
-/Users/kogahirotaka/develop/bear.sunday/kght6123.ossnotes/backend/vendor/bear/resource/src/Resource.php:146
-/Users/kogahirotaka/develop/bear.sunday/kght6123.ossnotes/backend/tests/Resource/App/GloginTest.php:24
-
-ERRORS!
-Tests: 3, Assertions: 20, Errors: 1.
-Script phpunit handling the test event returned with error code 2
-```
-
-下記はコードの抜粋です。
-
-```php:Glogin.php
-namespace kght6123\ossnote\Resource\App;
-
-require __DIR__ . '/../../../vendor/autoload.php';
-
-use Google_Client;// has no effect
-
-class Glogin extends BaseResourceObject
-{
-	public function onPost(string $userid, string $password, string $path): ResourceObject {
-    $client = new Google_Client();// not found error.
-  }
-}
-```
-
-フルバージョンのコードは下記で公開しております。
-https://github.com/kght6123/ossnotes/blob/master/backend/src/Resource/App/Glogin.php
-
-情報が少なくて申し訳ございませんが、
-可能であれば修正していただけますでしょうか？
-
-もしくは、Issuesの投稿先が間違っていますでしょうか？
-
-お手数をおかけいたしますが、よろしくお願いいたします。
-
-### Pull Request
-
-まず、forkしてcloneして、テスト実行する
-
-```sh
-git clone https://github.com/kght6123/Ray.Aop.git
-cd Ray.Aop
-composer install
-vendor/bin/phpunit
-php demo/run.php
-```
-
-`google\apiclient`をインストールする
-
-```
-composer require google/apiclient
-```
-
-`google\apiclient`の定義を追記
-
-```
-require __DIR__ . '/../../../vendor/autoload.php';
-
-use Google_Client;// has no effect
-
-$client = new Google_Client();// not found error.
-```
-
-再現せず、、、BEAR.Sundayのデモで試してみる
-
-```sh
-git clone https://github.com/kght6123/BEAR.Sunday.git
-cd BEAR.Sunday/demo
-composer install
-./vendor/bin/phpunit
-composer require google/apiclient
-
-composer serve
-```
